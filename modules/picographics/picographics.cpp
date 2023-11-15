@@ -597,22 +597,24 @@ mp_obj_t ModPicoGraphics_tilemap(size_t n_args, const mp_obj_t *pos_args, mp_map
 
     uint8_t *tilemap = (uint8_t *)tilemap_data.buf;
 
+    uint8_t tilesize = 20;
+    
     if(self->graphics->pen_type == PicoGraphics::PEN_DV_P5) {
 
         uint8_t *pixel_data = (uint8_t *)tilesheet_data.buf;
-
-        for(auto y = 0; y < tiles_y * 16; y++) {
-            int tile_y = y / 16 * tiles_x;
-            for(auto x = 0; x < tiles_x * 16; x++) {
-                int tile_x = x / 16;
+       
+        for(auto y = 0; y < tiles_y * tilesize; y++) {
+            int tile_y = y / tilesize * tiles_x;
+            for(auto x = 0; x < tiles_x * tilesize; x++) {
+                int tile_x = x / tilesize;
                 int tile_index = tile_x + tile_y;
                 int tile = tilemap[tile_index];
                 if(tile == 0) continue;
                 tile--;
                 tile &= 0b1111;
 
-                int tilesheet_x = (tile & 0b11) * 16;
-                int tilesheet_y = ((tile >> 2) & 0b11) * 16;
+                int tilesheet_x = (tile & 0b11) * tilesize;
+                int tilesheet_y = ((tile >> 2) & 0b11) * tilesize;
 
                 int tile_pixel_x = (x & 0b1111) + tilesheet_x;
                 int tile_pixel_y = (y & 0b1111) + tilesheet_y;
@@ -636,18 +638,18 @@ mp_obj_t ModPicoGraphics_tilemap(size_t n_args, const mp_obj_t *pos_args, mp_map
 
         uint16_t *pixel_data = (uint16_t *)tilesheet_data.buf;
 
-        for(auto y = 0; y < tiles_y * 16; y++) {
-            int tile_y = y / 16 * tiles_x;
-            for(auto x = 0; x < tiles_x * 16; x++) {
-                int tile_x = x / 16;
+        for(auto y = 0; y < tiles_y * tilesize; y++) {
+            int tile_y = y / tilesize * tiles_x;
+            for(auto x = 0; x < tiles_x * tilesize; x++) {
+                int tile_x = x / tilesize;
                 int tile_index = tile_x + tile_y;
                 int tile = tilemap[tile_index];
                 if(tile == 0) continue;
                 tile--;
                 tile &= 0b1111;
 
-                int tilesheet_x = (tile & 0b11) * 16;
-                int tilesheet_y = ((tile >> 2) & 0b11) * 16;
+                int tilesheet_x = (tile & 0b11) * tilesize;
+                int tilesheet_y = ((tile >> 2) & 0b11) * tilesize;
 
                 int tile_pixel_x = (x & 0b1111) + tilesheet_x;
                 int tile_pixel_y = (y & 0b1111) + tilesheet_y;
