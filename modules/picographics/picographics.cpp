@@ -652,14 +652,19 @@ mp_obj_t ModPicoGraphics_tilemap(size_t n_args, const mp_obj_t *pos_args, mp_map
                 int tile = tilemap[tile_index];
                 if(tile == 0) continue;
                 tile--;
-                tile &= 0b1111;
+                //tile &= 0b1111;
 
-                int tilesheet_x = (tile & 0b11) * tilesize;
+                /*int tilesheet_x = (tile & 0b11) * tilesize;
                 int tilesheet_y = ((tile >> 2) & 0b11) * tilesize;
 
                 int tile_pixel_x = (x & 0b1111) + tilesheet_x;
                 int tile_pixel_y = (y & 0b1111) + tilesheet_y;
+                */
+                int tilesheet_x = tile  * tilesize;
+                int tilesheet_y = (tile >> 2) * tilesize;
 
+                int tile_pixel_x = x  + tilesheet_x;
+                int tile_pixel_y = y  + tilesheet_y;
                 int tilesheet_index = tile_pixel_y * tilesheet_stride + tile_pixel_x;
 
                 RGB555 tile_pixel = pixel_data[tilesheet_index];
