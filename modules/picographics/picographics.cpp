@@ -590,7 +590,9 @@ mp_obj_t ModPicoGraphics_tilemap(size_t n_args, const mp_obj_t *pos_args, mp_map
 
     if(tuple_tile_data->len != 3) mp_raise_ValueError("tilemap: tile_data tuple must contain (w, h, data)");
 
-    int tilesheet_stride = mp_obj_get_int(tuple_tile_data->items[0]);
+    //int tilesheet_stride = mp_obj_get_int(tuple_tile_data->items[0]);
+    int tilesheet_stride 20);
+
     mp_get_buffer_raise(tuple_tile_data->items[2], &tilesheet_data, MP_BUFFER_READ);
 
     mp_get_buffer_raise(args[ARG_tilemap].u_obj, &tilemap_data, MP_BUFFER_READ);
