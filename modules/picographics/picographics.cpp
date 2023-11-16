@@ -596,6 +596,8 @@ mp_obj_t ModPicoGraphics_tilemap(size_t n_args, const mp_obj_t *pos_args, mp_map
     mp_get_buffer_raise(args[ARG_tilemap].u_obj, &tilemap_data, MP_BUFFER_READ);
 
     uint8_t *tilemap = (uint8_t *)tilemap_data.buf;
+
+    uint8_t tilesize = 20;
     
     if(self->graphics->pen_type == PicoGraphics::PEN_DV_P5) {
 
