@@ -27,7 +27,7 @@ while True:
         display.set_pen(BLACK)
         display.clear()
         display.set_pen(WHITE)
-        display.text("piano scroll.",0,200,320,1)
+        display.text("piano scroll. 1",0,200,320,1)
             
         display.update()
         
@@ -50,7 +50,7 @@ while True:
         display.set_pen(BLACK)
         display.clear()
         display.set_pen(WHITE)
-        display.text("piano scroll.",0,200,320,1)
+        display.text("piano scroll. 2",0,200,320,1)
             
         display.update()
         
@@ -60,6 +60,7 @@ while True:
 
         for d in range (2):
             display.pixel_span (8,f,622)
+            display.rectangle (8,f,622,1) # has no change effect on bug
             if (l == 7):
                 #sleep (0.05)
                 display.update()
@@ -69,6 +70,8 @@ while True:
             l =0
         
     sleep (3)    
+
+
 
 
         
